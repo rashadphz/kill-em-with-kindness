@@ -1,5 +1,6 @@
 document.onkeypress = function () {
-    var elem = document.activeElement;
-    // elem.appendChild('<p>Hi</p>')
-    console.log(typeof elem);
+    var pn = document.activeElement.parentNode;
+    const percent_div = document.createElement('div');
+    percent_div.innerText = "15"
+    pn.appendChild(percent_div);
 };
