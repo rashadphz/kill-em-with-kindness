@@ -105,7 +105,7 @@ function toxicityRating(text){
             new_paragraph = new_paragraph + (temp_string);
           }
           if (spans[i]["toxicity_level"] < TOXIC_THRESHOLD){
-            temp_string = "<span data-text=\"true\" style=\"color:white\">" + (temp_string) + "</span>";
+            temp_string = "<span data-text=\"true\" style=\"color:green\">" + (temp_string) + "</span>";
             new_paragraph = new_paragraph + (temp_string);
           }
         }
