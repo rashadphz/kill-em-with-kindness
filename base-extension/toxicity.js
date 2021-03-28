@@ -14,7 +14,8 @@ function check_timer() {
     var delta = Date.now() - start; 
     if (delta/1000 > WAIT_TIME){ //wait three seconds before checking toxicity
         var elem = document.activeElement;
-        if (elem.contentEditable && elem.textContent != prev_text){ //don't make api calls on the same message
+        // console.log(elem.textContent);
+        if (elem.isContentEditable && elem.textContent != prev_text){ //don't make api calls on the same message
             prev_text = elem.textContent;
             toxicityRating(prev_text);
         }
