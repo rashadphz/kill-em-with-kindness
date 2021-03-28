@@ -22,13 +22,13 @@ client = discovery.build(
 def api(comment):
     analyze_request = {
       'comment': {'text': comment},
-      'requestedAttributes': {'INSULT': {}},
+      'requestedAttributes': {'TOXICITY': {}},
       'spanAnnotations': True
     }
     response = client.comments().analyze(body=analyze_request).execute()
     print(json.dumps(response, indent=4))
     spans = []
-    for span in response['attributeScores']['INSULT']['spanScores']:
+    for span in response['attributeScores']['TOXICITY']['spanScores']:
         spans.append({
             'begin': span['begin'],
             'end': span['end'],
@@ -37,7 +37,7 @@ def api(comment):
     print(spans)
     return {
         'attributes': {
-                'INSULT':response['attributeScores']['INSULT']['summaryScore']['value']
+                'INSULT':response['attributeScores']['TOXICITY']['summaryScore']['value']
         },
         'spans': spans
     }
