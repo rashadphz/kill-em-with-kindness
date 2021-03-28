@@ -1,5 +1,5 @@
 var start = Date.now();
-var WAIT_TIME = 2.5;
+var WAIT_TIME = 2;
 
 var prev_text = "";
 
@@ -8,12 +8,10 @@ var TOXIC_THRESHOLD = 0.75; //how toxic the message can be
 document.onkeypress = function () {
     start = Date.now();
     window.setInterval(check_timer, 1000);
-    // check_timer();
 };
 
 function check_timer() {
     var delta = Date.now() - start; 
-    // console.log(delta);
     if (delta/1000 > WAIT_TIME){ //wait three seconds before checking toxicity
         var elem = document.activeElement;
         if (elem.contentEditable && elem.textContent != prev_text){ //don't make api calls on the same message
@@ -28,16 +26,13 @@ function toxicityRating(text){
     let api_wrapper = `https://pacific-basin-18297.herokuapp.com/api/${text}/`;
     fetch (api_wrapper)
     .then(data =>{return data.json()})
-    .then(res=> {console.log(res)})
-    // let api_wrapper = "https://pacific-basin-18297.herokuapp.com/api/group/";
-    // fetch (api_wrapper)
-    // .then(data =>{return data.json().attributes})
-    // .then(res => {
-    //     var toxic_score = res.TOXICITY;
-    //     if (toxic_score > TOXIC_THRESHOLD){
-    //         alert("MESSAGE IS TOXIC");
-    //     }
-
-    // })
+    .then(res => {
+        console.log(res)
+        var toxic_level = res.attributes.TOXICITY;
+        console.log(toxic_level);
+        if (toxic_level > TOXIC_THRESHOLD){
+            alert("This is too toxic");
+        }
+    })
 
 };
