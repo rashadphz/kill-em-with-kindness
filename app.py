@@ -18,10 +18,9 @@ client = discovery.build(
 def api(comment):
     analyze_request = {
       'comment': {'text': comment},
-      'requestedAttributes': {'TOXICITY': {}, 'INSULT' : {}, 'FLIRTATION': {}}
+      'requestedAttributes': {'TOXICITY': {}, 'INSULT' : {}}
     }
     response = client.comments().analyze(body=analyze_request).execute()
-    print(json.dumps(response, indent=2))
     return {'attributes':
         {
             'TOXICITY':response['attributeScores']['TOXICITY']['spanScores'][0]['score']['value'],

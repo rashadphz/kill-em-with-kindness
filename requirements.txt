@@ -1,8 +1,6 @@
 absl-py==0.11.0
-alembic==1.4.2
 astroid==2.5.1
 astunparse==1.6.3
-bcrypt==3.1.7
 cached-property==1.5.2
 cachetools==4.1.1
 certifi==2020.6.20
@@ -14,6 +12,7 @@ configparser==5.0.1
 cycler==0.10.0
 Flask==1.1.2
 Flask-Bcrypt==0.7.1
+flask-cors==3.0.10
 flask-googlemaps==0.4.0
 Flask-Login==0.5.0
 Flask-Migrate==2.5.3
