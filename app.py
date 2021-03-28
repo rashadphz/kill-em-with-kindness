@@ -37,7 +37,7 @@ def api(comment):
     print(spans)
     return {
         'attributes': {
-                'INSULT':response['attributeScores']['INSULT']['spanScores'][0]['score']['value']
+                'INSULT':response['attributeScores']['INSULT']['summaryScore']['value']
         },
         'spans': spans
     }
