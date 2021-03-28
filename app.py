@@ -22,14 +22,24 @@ client = discovery.build(
 def api(comment):
     analyze_request = {
       'comment': {'text': comment},
-      'requestedAttributes': {'TOXICITY': {}, 'INSULT' : {}}
+      'requestedAttributes': {'INSULT': {}},
+      'spanAnnotations': True
     }
     response = client.comments().analyze(body=analyze_request).execute()
-    return {'attributes':
-        {
-            'TOXICITY':response['attributeScores']['TOXICITY']['spanScores'][0]['score']['value'],
-            'INSULT':response['attributeScores']['INSULT']['spanScores'][0]['score']['value']
-        }
+    print(json.dumps(response, indent=4))
+    spans = []
+    for span in response['attributeScores']['INSULT']['spanScores']:
+        spans.append({
+            'begin': span['begin'],
+            'end': span['end'],
+            'toxicity_level': span['score']['value']
+        })
+    print(spans)
+    return {
+        'attributes': {
+                'INSULT':response['attributeScores']['INSULT']['spanScores'][0]['score']['value']
+        },
+        'spans': spans
     }
 
 if __name__ == '__main__':
