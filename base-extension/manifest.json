@@ -6,7 +6,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab", "scripting", "*://*/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -22,5 +22,11 @@
     "48": "/images/get_started48.png",
     "128": "/images/get_started128.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["raunak.js", "jquery-3.6.0.min.js"]
+    }
+  ],
   "options_page": "options.html"
 }
